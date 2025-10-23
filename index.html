@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>نموذج تسجيل</title>
+</head>
+<body>
+  <form id="myForm">
+    <input type="text" name="name" placeholder="الاسم" required><br>
+    <input type="text" name="phone" placeholder="رقم الهاتف" required><br>
+    <button type="submit">إرسال</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('myForm');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch('https://sheetdb.io/api/v1/4rfqnj39bygyc', { // حط لينك الـ API بتاعك هنا
+        method: 'POST',
+        body: new FormData(form),
+      }).then(response => response.json())
+        .then(result => {
+          alert('تم الإرسال بنجاح!');
+          form.reset();
+        });
+    });
+  </script>
+</body>
+</html>
